@@ -1,0 +1,6 @@
+pydantic~=1.9.1
+fastapi~=0.78.0
+schema~=0.7.5
+parameterized~=0.8.1
+uvicorn
+requests
