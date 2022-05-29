@@ -38,10 +38,19 @@ dev: dev-up
 
 test: test-up test-run test-down
 
-deploy: test build
+deploy-docker-hub: test build
 	docker push $(PROJECT):latest
-	
-deploy-k8s: deploy
+
+deploy-minikube:
 	kubectl apply -f k8s/namespace
-	kubectl apply -f k8s/nginx
+	kubectl apply -f k8s/code
+
+deploy-gke: deploy-docker-hub
+	gcloud auth activate-service-account {service-account} \
+	--key-file = {path-to-the-key}\
+	--project = {gcp-project-id}
+	gcloud container clusters \
+	get-credentials {cluster-name} \
+	--zone = {cluster-zone}
+	kubectl apply -f k8s/namespace
 	kubectl apply -f k8s/code

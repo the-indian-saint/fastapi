@@ -6,6 +6,7 @@ metadata:
   labels:
     app: treeapi-app
 spec:
+  type: LoadBalancer
   selector:
     app: treeapi-app
   ports:

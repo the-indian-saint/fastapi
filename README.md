@@ -48,21 +48,27 @@ check http://localhost:8000/docs
 
 ```
 kubectl apply -f k8s/namespace
-kubectl apply -f k8s/nginx
 kubectl apply -f k8s/code
 ```
 ## CI/CD
 
 * Copy the Makefile in your CI.
-* Register appropriate credentials for you source code repository,
-  Docker registry and K8s Cluster. 
-* Setp required environment var
-  iables.
+* Install gcloud and kubectl on the CI.
+* Register your source code repository.
+* Login to your docker registry using "docker login" command.
+* Store GCP service account key on the CI and update the follwoing in the Makefile
+```
+{service-account} - Name of your service account.
+{path-to-the-key} - Path to the SA key in the CI.
+{gcp-project-id} - GCP project ID.
+{cluster-name} - Name of the cluster.
+{cluster-zone} - Zone of the cluster
+```
 * Use following commands
 
 ```
-make deploy - for deploying to container registry
+make deploy-docker-hub - for deploying to container registry
 ```
 ```
-make deploy-k8s - for deploying to K8s cluster
+make deploy-gke - for deploying to K8s cluster
 ```
