@@ -31,7 +31,7 @@ make test
 ## Deploy to dockerhub
 
 ```
-make deploy
+make deploy-docker-hub
 ```
 
 ## OPEN API Documentation
